@@ -20,7 +20,7 @@ urlpatterns = [
     path('usuarios/', include('aplicaciones.usuarios.urls')),
 ]
 
-if settings.DEBUG:
+if settings.DEBUG :
     from django.conf.urls.static import static
     from django.contrib.staticfiles.views import serve as static_serve
     staticpatterns = static(settings.STATIC_URL, view=static_serve)
