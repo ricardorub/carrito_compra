@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load filtros_carrito %}
+{% block title %} Pagina de inicio | Carrito de Compras{% endblock title %}
+{% block contenido %}
+	<div class="row">
+	        <div class="col-md-2 ">
+	        	<h2> s</h2>
+	        </div>
+	</div>
+
+    <div class="container">
+    	<br>
+		<h3>Cursos agregados al Carrito de compras</h3>
+       <div class="row justify-content-center row-cur">
+              <div class="row">
+        {% for curso in cursos  %}   
+                <div class="col-md-3 car_marg1">
+                  <img class="img-cart" src=" {{curso.portada.url}} " alt="" height="120" width="150">
+                </div>
+                <div class="col-md-6 car_marg2">
+                <a href="#">  <p class="parrafo1">{{ curso.nombre }}</p></a>
+                 <p >{{ curso.resumen }}</p>
+                </div>
+                <div class="col-md-3 car_marg">
+                        <div class="row">
+                           <div class="col-md-12 text_carrit">
+                              <i class="fa fa-times left_text" aria-hidden="true"></i>
+                           </div>
+                           <div class="col-md-12 text_carrit">
+                              <span class="left_text"><strong>{{curso.costo}}</strong></span>
+                           </div>
+                        </div>
+                </div>
+            {% endfor %}     
+              </div>
+            </div>
+            <div class="container pie_cart">
+            <div class="row grupo_cart">
+                 <div class="col-md-6">
+                   <span class="subti_cart"><strong>Costo Total : </strong></span>
+                 </div>
+                 <div class="col-md-6 text_carrit1">
+                   <span class="precio_cart"><strong>S/ {{request.user|costo_total_cursos}}</strong></span>
+                 </div>
+            </div>
+            </div> 
+        </div>
+    </div>
+{% endblock contenido %}

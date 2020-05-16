@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load filtros_carrito %}
+{% block title %} Pagina de inicio | Carrito de Compras{% endblock title %}
+{% block contenido %}
+	<div class="row">
+	        <div class="col-md-2 ">
+	        	<h2>h </h2>
+	        </div>
+	</div>
+
+    <div class="container">
+    	<br>
+		<h3>Agregar Cursos al Carrito</h3>
+       <div class="row justify-content-center row-cur">
+        {% for curso in cursos  %}
+        <div class="col-md-4 col1">    
+            <div class="card">
+
+                <div class="view overlay hm-white-slight">
+                    <img src=" {{curso.portada.url }} " class="img-fluid" alt="" width="300px" height="300px">
+                    <a href="#">
+                        <div class="mask"></div>
+                    </a>
+                </div>
+        
+                <!--content-->
+                <div class="card-body">
+                    <!--Title-->
+                    <a href="#"><h4 class="card-title">{{curso.nombre}}</h4></a>
+                    <hr>
+                    <!--Text-->
+                    <p class="card-text">{{ curso.resumen}}</p>
+                {% if not curso.es_gratis %}
+                {% if curso|si_agrego_curso_carrito %}
+                  <a href="" class="btn btn-success"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Agreado</a> 
+                    <a href=" {% url 'app_carrito:p_ver_carrito' request.user.usuario %} "> <button type="button" class="btn btn-outline-info waves-effect ir_carrito">Ir a tu carrito</button></a>
+                  {% else %}  
+                  <a href=" {% url 'app_carrito:p_agregar_compra' curso.slug %} " class="btn btn-primary"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Agregar al Carrito</a>  
+                {% endif %}
+                {% else %}
+                <a href="#" class="btn btn-primary">Ingresar</a>
+                {%endif%}
+
+                </div>
+                <!--content-->
+                <!-- footer -->
+                <div class="card-data">
+                    <ul >
+                        {% if curso.es_gratis %}
+                        <span>Gratis</span>
+                        {% else %}
+                        <span>S/. {{curso.costo}}</span>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- footer -->
+            </div>
+        </div>
+        {% endfor %}     
+        </div>
+    </div>
+{% endblock contenido %}

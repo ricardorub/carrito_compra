@@ -1,0 +1,92 @@
+ /*carrito de compras*/
+ .dimenc{
+  width: 500px;
+}
+
+.text_carrit{
+	text-align: right;
+}
+.left_text{
+padding-right: 0.8em;
+}
+.parrafo1{
+padding-left: 0.6em;
+color: #1565c0;
+}
+.scroll_carrito{
+	height:200px; 
+	overflow: scroll;	
+	overflow-x: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+.img-cart{
+	padding-left: 0.6em;
+	padding-top: 0.6em;
+}
+.mensaje_carrito{
+	padding-left: 2em;
+}
+.text_carrit1{
+	text-align: right;
+	padding-right: 1.6em;
+
+}
+.precio_cart{
+
+	font-size: 20px;
+}
+.subti_cart{
+
+	font-size: 20px;
+}
+.grupo_cart{
+	margin-bottom: 0.6em;
+}
+.ir_carrito{
+	margin-left: 2.2em;
+}
+.pie_cart{
+	border-top: 1px solid #E0E0E0;
+}
+.ir_carrito1{
+	margin-left: 4.2em;
+}
+@media screen and (max-width:500px) {
+    .ir_carrito1{
+	margin-left: 0em;
+}
+}
+.visa{
+	width: 60px;
+	height: 15px;
+
+}
+.efect{
+	width: 40px;
+	height: 40px;
+}
+.mgto-mgbt{
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+.cart_not2{
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom: 1em;
+}
+.product-name1{
+	text-align: center;
+	margin-bottom: 2em;
+}
+.product-name2{
+	margin-bottom: 1em;
+}
+.primera_col{
+	background: red;
+	height: 200px;
+}
+.star_icon{
+	padding-top: 0.5em;
+	padding-right: 4.5em;
+	color: #ebf1f6;
+}

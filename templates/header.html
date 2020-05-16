@@ -1,0 +1,74 @@
+   {% load static %} 
+   {% load filtros_carrito %}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="/"> <span class="fa fa-home"></span> CARRITO DE COMPRAS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        {% if request.user.is_authenticated %}
+        <div class="nav-item dropdown">
+           <a class="nav-link star_icon" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="notification_count"></span><i class="fa fa-shopping-cart fa-lg star_icon" aria-hidden="true"></i></a>
+           <div class="dropdown-menu dropdown-menu-right dimenc" aria-labelledby="navbarDropdownMenuLink">
+              <div class="row">
+                 <p class="mensaje_carrito"><strong>Tienes {{request.user|cantidad_cursos_carrito }} curso en tu carrito</strong></p>
+              </div>
+              {% for curso_carrito in request.user|cursos_carrito  %}
+              <div class="container scroll_carrito">
+              {% for curso in curso_carrito.cursos.all %}              
+                <div class="row">
+                  <div class="col-md-3 car_marg1">
+                    <img class="img-cart" src=" {{curso.portada.url}} " alt="" height="59" width="50">
+                  </div>
+                  <div class="col-md-6 car_marg2">
+                  <a href="#">  <p class="parrafo1">{{ curso.nombre }}</p></a>
+                  </div>
+                  <div class="col-md-3 car_marg">
+                          <div class="row">
+                             <div class="col-md-12 text_carrit">
+                                <i class="fa fa-times left_text" aria-hidden="true"></i>
+                             </div>
+                             <div class="col-md-12 text_carrit">
+                                <span class="left_text"><strong>{{curso.costo}}</strong></span>
+                             </div>
+                          </div>
+                  </div>
+                </div>
+              {% endfor %}
+              </div>
+              {% endfor %}
+              <div class="container pie_cart">
+                   <div class="row grupo_cart">
+                   <div class="col-md-6">
+                     <span class="subti_cart"><strong>Total: </strong></span>
+                   </div>
+                   <div class="col-md-6 text_carrit1">
+                     <span class="precio_cart"><strong>S/ {{request.user|costo_total_cursos}}</strong></span>
+                   </div>
+              </div>
+              <div class="row ">
+                     <div class="col-md-6">
+                         <a href=" {% url 'app_carrito:p_ver_carrito' request.user.usuario %} "> <button type="button" class="btn btn-outline-info waves-effect ir_carrito">Ir a tu carrito</button></a>
+                     </div>
+              </div>
+              </div> 
+           </div>
+        </div>
+        {% endif %}
+        <li class="form-inline my-2 my-lg-0">
+          {% if request.user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+            <a  href=" {% url 'cerrar_sesion' %}" class="nav-link"><li class="nav-item active"> Bienvenido {{request.user}} <i class="fa fa-sign-in"> Cerrar sesión</i></a>
+            </ul>
+          </li>
+          {%else%}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item active"><a href=" {% url 'iniciar_sesion' %} " class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"> Iniciar sesión</i></a></li>
+          </ul>
+          {% endif %}
+      </div>
+    </nav>
+         
+          

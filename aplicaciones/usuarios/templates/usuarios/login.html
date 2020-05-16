@@ -1,0 +1,29 @@
+{% extends "usuarios/base_usuario.html" %}
+{% block title %}Incio de Sesión{% endblock title %}
+{% load static %}
+{% block contenido %}
+		<div class="container">
+		{% if request.user.is_authenticated %}
+			<li class="nav-item active ">
+			  <a class="nav-link" href="/"> <span class="fa fa-exchange"></span> Inicio</a>
+			</li>
+			<a  href=" {% url 'cerrar_sesion' %}" class="nav-link"><li class="nav-item active"> Bienvenido {{request.user}} ud. ya inicio sesión<i class="fa fa-sign-in"> Cerrar sesión</i></a>
+		{% else %}
+		  <form action=".?next={{ redirect_to }}" method="post" class="form-signin">
+		  	{% csrf_token %}
+		    <h4 class="form-signin-heading">Carrito de Compra - Login</h4>
+		    <label for="inputEmail" class="sr-only">Usuario</label>
+		    <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
+		    <label for="inputPassword" class="sr-only">Contraseña</label>
+		    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" required>
+		    <div class="checkbox">
+		      <label>
+		        <input type="checkbox" value="remember-me"> Recordarme
+		      </label>
+		    </div>
+		    <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
+		  </form>
+		{% endif %}
+		</div>
+
+{% endblock contenido %}
